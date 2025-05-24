@@ -1,12 +1,18 @@
 
 import './App.css'
+import { Routes,Route } from 'react-router-dom'
+import Register from './pages/Register'
+import Login from './pages/Login'
 
 function App() {
 
   return (
-   <div>
-    <h1 className='text-xl text-red-400'>Bus Reservation system </h1>
-   </div>
+    <>
+      <Routes>
+        <Route path='/' element={<Register/>}/>
+        <Route path='/login' element={<Login/>} />
+      </Routes>
+    </>
   )
 }
 
