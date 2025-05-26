@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
+import axios from "axios";
+import { toast } from "react-toastify";
 
 export default function LoginForm() {
   const [formData, setFormData] = useState({
@@ -24,11 +26,29 @@ export default function LoginForm() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (validate()) {
-      console.log('Login submitted:', formData);
-      // TODO: Call login API here
+      
+      try {
+      const response = await axios.post("http://localhost:8080/api/auth/login",formData);
+      const data = response.data;
+
+      if (response.status === 200 && response.data.token) {
+
+        // Store the token in localStorage
+        localStorage.setItem("token", response.data.token);
+        console.log("Login successful!",(data));
+        
+        toast.success("Login successful!",{position: "top-center",});
+      } else {
+        console.log("Login failed. Please check your credentials.");
+        toast.warning("Login failed. Please check your credentials.",{position: "top-center",});
+      }
+    } catch (error) {
+        console.error("Login error:",error.response?.data || error.message)
+        toast.error(error.response?.data || error.message, {position: "top-center",});
+    }
     }
   };
 
@@ -79,7 +99,7 @@ export default function LoginForm() {
 
                 <p className="text-center text-sm mt-4">
                 Don’t have an account?{' '}
-                <a href="/register" className="text-blue-500 hover:underline">
+                <a href="/" className="text-blue-500 hover:underline">
                     Register here
                 </a>
                 </p>

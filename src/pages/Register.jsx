@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
+import axios from "axios";
+import { toast } from "react-toastify";
+import { useNavigate } from 'react-router-dom';
 
 export default function Register() {
+  const navigate = useNavigate()
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -31,11 +35,28 @@ export default function Register() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (validate()) {
-      console.log('Form submitted:', formData);
-      // Submit logic here
+     try{
+      const response = await axios.post("http://localhost:8080/api/auth/register",formData);
+      const data = response.data;
+
+      console.log("Registration successful", data);
+      console.log(data);
+      
+      toast.success("Registration successful!",{position: "top-center",});
+      navigate('/login')
+
+      if (response.status === 200) {
+        // Reset form data after successful registration
+        setFormData({firstName: "",lastName: "",email: "",password: "", role: "",});
+      }
+
+    } catch (error) {
+      console.error("Registration failed:",error.response?.data || error.message)
+      toast.error("Registration failed:" + error.response?.data || error.message,{position: "top-center",})
+    };
     }
   };
 
@@ -114,6 +135,7 @@ export default function Register() {
         </div>
 
         <button
+          onClick={handleSubmit}
           type="submit"
           className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition"
         >
