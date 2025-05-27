@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useNavigate } from 'react-router-dom';
 
 export default function LoginForm() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -38,9 +40,18 @@ export default function LoginForm() {
 
         // Store the token in localStorage
         localStorage.setItem("token", response.data.token);
+        localStorage.setItem("User2",JSON.stringify(data));
         console.log("Login successful!",(data));
+        // console.log(data.role);
+        
         
         toast.success("Login successful!",{position: "top-center",});
+
+        if(data.role == "USER")
+          navigate('/user')
+        else
+          navigate('/operator')
+          
       } else {
         console.log("Login failed. Please check your credentials.");
         toast.warning("Login failed. Please check your credentials.",{position: "top-center",});
