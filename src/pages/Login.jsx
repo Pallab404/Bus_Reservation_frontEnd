@@ -42,7 +42,7 @@ export default function LoginForm() {
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("User2",JSON.stringify(data));
         console.log("Login successful!",(data));
-        // console.log(data.role);
+        console.log(data);
         
         
         toast.success("Login successful!",{position: "top-center",});
