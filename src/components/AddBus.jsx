@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
 
 const AddBus = () => {
+
+  const navigate = useNavigate();
 
   const initialBusData = {
     busName: "",
@@ -27,16 +31,11 @@ const AddBus = () => {
           },
         }
       );
-      console.log("Reponse Data:" , response.data);
-      console.log(bus);
-      
       toast.success("Bus added successfully!", { position: "top-center" });
       setBus(initialBusData)
+      navigate("/operator/home")
     } catch (error) {
-      console.error("Bus not added:", error.response?.data || error.message);
-      toast.error(error.response?.data || error.message, {
-        position: "top-center",
-      });
+      toast.error(error.response?.data || error.message, { position: "top-center",});
     }
   };
 
