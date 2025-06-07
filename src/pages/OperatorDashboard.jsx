@@ -15,7 +15,7 @@ const OperatorDashboard = () => {
     const [user,setUser] = useState('');
 
     useEffect(()=>{
-        const storedUser = localStorage.getItem("Users");
+        const storedUser = localStorage.getItem("User2");
         if(storedUser){
             const parseUser = JSON.parse(storedUser);
             setUser(parseUser.email);

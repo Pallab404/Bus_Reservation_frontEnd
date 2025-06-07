@@ -19,6 +19,7 @@ function App() {
         <Route path='/login' element={<Login/>} />
        
         <Route path='/operator' element={<OperatorDashboard/>}>
+           <Route index element={<BusList/>}/>
            <Route path='add-bus' element={<AddBus/>}/> 
            <Route path='home' element={<BusList/>}/>
            <Route path="schedules/:busId" element={<ScheduleList />} />
