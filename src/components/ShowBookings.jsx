@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
-const ShowReservation = () => {
+const ShowBookings = () => {
   const { scheduleId } = useParams();
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -67,4 +67,4 @@ const ShowReservation = () => {
   );
 };
 
-export default ShowReservation;
+export default ShowBookings;

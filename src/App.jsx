@@ -11,6 +11,7 @@ import BusList from './components/BusList'
 import ScheduleList from './components/ScheduleList'
 import SelectSeats from './components/User/SelectSeats'
 import Payment from './components/User/Payment'
+import ShowBookings from './components/ShowBookings'
 
 function App() {
 
