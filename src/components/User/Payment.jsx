@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const Payment = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const bookingData = location.state?.bookingData;
+  const totalFare = location.state?.totalFare;
 
   const [paymentMethod, setPaymentMethod] = useState('');
   const [cardInfo, setCardInfo] = useState({
@@ -36,7 +38,7 @@ const Payment = () => {
     };
 
     try {
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem('user-token');
       console.log(token)
       await axios.post('http://localhost:8080/api/user/book-seat', finalPayload, {
         headers: {
@@ -44,11 +46,11 @@ const Payment = () => {
         },
       });
 
-      alert('Booking successful!');
+      toast.success('Booking successful!',{position: "top-center"});
       navigate('/user/booking-list');
     } catch (error) {
       console.error('Booking failed:', error);
-      alert('Payment failed. Try again.');
+      toast.warning('Payment failed. Try again.',{position: "top-center"});
     }finally{
         console.log(finalPayload);
         
@@ -59,9 +61,6 @@ const Payment = () => {
     return <div className="p-6 text-red-600">No booking data found.</div>;
   }
 
-  const pricePerSeat = 500;
-  const totalPrice = bookingData.seatNumbers.length * pricePerSeat;
-
   return (
     <div className="max-w-2xl mx-auto p-6 border rounded shadow mt-10 bg-white">
       <h2 className="text-xl font-bold mb-4">Payment</h2>
@@ -70,7 +69,7 @@ const Payment = () => {
         <strong>Seats:</strong> {bookingData.seatNumbers.join(', ')}
       </p>
       <p className="mb-4">
-        <strong>Total Price:</strong> ₹{totalPrice}
+        <strong>Total Price:</strong> ₹{totalFare}
       </p>
 
       <div className="mb-4">

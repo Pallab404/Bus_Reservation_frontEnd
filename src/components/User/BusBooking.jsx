@@ -22,7 +22,7 @@ const BusBooking = () => {
 
   const handleSearch = async (e) => {
     e.preventDefault();
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("user-token");
 
     const requestBody = {
       source: formData.from,

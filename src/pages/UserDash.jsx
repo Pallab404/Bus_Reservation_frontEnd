@@ -1,16 +1,25 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "../components/Sidebar";   
 import Navbar2 from "../components/Navbar2";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 
 const userMenu = [
     { label: 'Profile', path: '/user/profile' },
     { label: 'Home', path: '/user/booking-List' },
     { label: 'Book Tickets', path: '/user/book-tickets'},
-    { label: 'Logout', path: '/logout' },
+    { label: 'Logout', path: '/user/logout' },
 ];
 
 const UserDash = () => {
+
+
+  const navigate = useNavigate();
+  useEffect(() => {
+  const isLoggedIn = localStorage.getItem("user-token");
+  if (!isLoggedIn) {
+    navigate("/login", { replace: true });
+  }
+}, []);
 
     const [user,setUser] = useState('');
 

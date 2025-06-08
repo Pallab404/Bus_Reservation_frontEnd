@@ -40,18 +40,24 @@ export default function LoginForm() {
       if (response.status === 200 && response.data.token) {
 
         // Store the token in localStorage
-        localStorage.setItem("token", response.data.token);
-        localStorage.setItem("User2",JSON.stringify(data));
+        // localStorage.setItem("token", response.data.token);
+        // localStorage.setItem("User2",JSON.stringify(data));
         console.log("Login successful!",(data));
         console.log(token);
         
         
         toast.success("Login successful!",{position: "top-center",});
 
-        if(data.role == "USER")
+        if(data.role == "USER"){
+          localStorage.setItem("user-token", response.data.token);
+          localStorage.setItem("User2",JSON.stringify(data));
           navigate('/user')
-        else
+        }
+        else{
+          localStorage.setItem("ope-token", response.data.token);
+          localStorage.setItem("Operator",JSON.stringify(data));
           navigate('/operator')
+        }
           
       } else {
         console.log("Login failed. Please check your credentials.");

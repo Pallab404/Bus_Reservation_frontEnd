@@ -9,7 +9,7 @@ const ScheduleList = () => {
   useEffect(() => {
     const fetchSchedules = async () => {
       try {
-        const token = localStorage.getItem("token");
+        const token = localStorage.getItem("ope-token");
         const response = await axios.get(`http://localhost:8080/api/operator/schedules/${busId}`, {
           headers: { Authorization: `Bearer ${token}` },
         });

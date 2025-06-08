@@ -32,7 +32,7 @@ const BusCard = ({ bus, routes }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem("ope-token");
 
       if (!schedule.routeId) {
         toast.error("Please select a route", { position: "top-center" });
