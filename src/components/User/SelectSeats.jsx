@@ -402,8 +402,8 @@ const SelectSeats = () => {
                     className="p-2 border rounded"
                   >
                     <option value="">Select Gender</option>
-                    <option value="MALE">Male</option>
-                    <option value="FEMALE">Female</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
                   </select>
                 </div>
               </div>
