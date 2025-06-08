@@ -9,6 +9,7 @@ import OperatorDashboard from './pages/OperatorDashboard'
 import AddBus from './components/AddBus'
 import BusList from './components/BusList'
 import ScheduleList from './components/ScheduleList'
+import ShowBookings from './components/ShowBookings'
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
            <Route path='add-bus' element={<AddBus/>}/> 
            <Route path='home' element={<BusList/>}/>
            <Route path="schedules/:busId" element={<ScheduleList />} />
+           <Route path="booking/:scheduleId" element={<ShowBookings/>} />
         </Route>
 
         <Route path='/user' element={<UserDash/>}>

@@ -6,7 +6,6 @@ import { Outlet } from "react-router-dom";
 const operatorMenu = [
     { label: 'Home', path: '/operator/home' },
     { label: 'AddBus', path: '/operator/add-bus' },
-    { label: 'Reservation', path: '/operator/schedule' },
     { label: 'Logout', path: '/operator/logout' },
 ];
 
