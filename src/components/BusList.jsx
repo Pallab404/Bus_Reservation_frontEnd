@@ -11,7 +11,7 @@ const BusList = () => {
   useEffect(()=>{
     const fetchBus = async() =>{
       try {
-        const token = localStorage.getItem("token")
+        const token = localStorage.getItem("ope-token")
         const response = await axios.get("http://localhost:8080/api/operator/my-buses",{
            headers: {
             Authorization: `Bearer ${token}`,
@@ -34,7 +34,7 @@ const BusList = () => {
   useEffect(() => {
     const fetchRoutes = async () => {
       try {
-        const token = localStorage.getItem("token");
+        const token = localStorage.getItem("ope-token");
         const res = await axios.get("http://localhost:8080/api/routes/get-routes", {
           headers: { Authorization: `Bearer ${token}` },
         });
