@@ -4,12 +4,13 @@ import Register from './pages/Register'
 import Login from './pages/Login'
 import UserDash from './pages/UserDash'
 import BookedTickets from './components/BookedTickets'
-import BusBooking from './components/BusBooking'
+import BusBooking from './components/User/BusBooking'
 import OperatorDashboard from './pages/OperatorDashboard'
 import AddBus from './components/AddBus'
 import BusList from './components/BusList'
 import ScheduleList from './components/ScheduleList'
-import ShowBookings from './components/ShowBookings'
+import SelectSeats from './components/User/SelectSeats'
+import Payment from './components/User/Payment'
 
 function App() {
 
@@ -31,6 +32,8 @@ function App() {
             <Route index element={<BookedTickets/>}/>
             <Route path='booking-list' element={<BookedTickets/>}/>
             <Route path='book-tickets' element={<BusBooking/>}/>
+            <Route path='select-seats' element={<SelectSeats/>}/>
+            <Route path='payment' element={<Payment/>}/>
         </Route>
       </Routes>
     </>

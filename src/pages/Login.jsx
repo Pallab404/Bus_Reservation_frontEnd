@@ -35,6 +35,7 @@ export default function LoginForm() {
       try {
       const response = await axios.post("http://localhost:8080/api/auth/login",formData);
       const data = response.data;
+      const token = response.data.token;
 
       if (response.status === 200 && response.data.token) {
 
@@ -42,7 +43,7 @@ export default function LoginForm() {
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("User2",JSON.stringify(data));
         console.log("Login successful!",(data));
-        console.log(data);
+        console.log(token);
         
         
         toast.success("Login successful!",{position: "top-center",});
