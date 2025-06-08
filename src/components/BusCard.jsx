@@ -89,7 +89,7 @@ const BusCard = ({ bus, routes }) => {
           {bus.scheduled ? (
             <button
               onClick={() =>
-                navigate(`/operator/schedules/${bus.id}`, { state: { routes } })
+                navigate(`/operator/schedules/${bus.id}`)
               }
               className="mt-6 w-full py-2 rounded-md font-semibold text-white bg-purple-600 hover:bg-purple-700 transition"
             >

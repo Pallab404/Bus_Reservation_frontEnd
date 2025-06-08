@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const ScheduleList = () => {
+  const navigate = useNavigate();
   const { busId } = useParams();
   const [schedules, setSchedules] = useState([]);
 
@@ -27,8 +28,6 @@ const ScheduleList = () => {
   }, [busId]);
 
 const handleCancel = async (scheduleId) => {
-  console.log("Cancelling schedule:", scheduleId);
-  console.log(`Cancel URL: http://localhost:8080/api/operator/cancel/${scheduleId}`);
 
   try {
     const token = localStorage.getItem("token");
@@ -51,8 +50,7 @@ const handleCancel = async (scheduleId) => {
 
 
   const handleShowReservation = (scheduleId) => {
-    console.log("Show Reservation clicked for schedule:", scheduleId);
-    // Add navigation or modal logic if needed
+    navigate(`/operator/booking/${scheduleId}`);
   };
 
   return (
@@ -87,10 +85,10 @@ const handleCancel = async (scheduleId) => {
                   Cancel
                 </button>
                 <button
-                  onClick={() => handleShowReservation(schedule.scheduleId)}
+                   onClick={() => handleShowReservation(schedule.scheduleId)} 
                   className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-semibold shadow-md transition"
                 >
-                  Show Reservation
+                  Show Bookings
                 </button>
               </div>
             </div>
