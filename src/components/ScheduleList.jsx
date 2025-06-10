@@ -24,13 +24,26 @@ const ScheduleList = () => {
   };
 
   useEffect(() => {
+    const fetchSchedules = async () => {
+      try {
+        const token = localStorage.getItem("ope-token");
+        const response = await axios.get(`http://localhost:8080/api/operator/schedules/${busId}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+
+        setSchedules(Array.isArray(response.data) ? response.data : [response.data]);
+      } catch (error) {
+        console.error("Error fetching schedules:", error);
+      }
+    };
+
     fetchSchedules();
   }, [busId]);
 
 const handleCancel = async (scheduleId) => {
 
   try {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("ope-token");
     await axios.delete(
       `http://localhost:8080/api/operator/cancel/${scheduleId}`,
       {

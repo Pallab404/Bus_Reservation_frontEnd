@@ -1,15 +1,25 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "../components/Sidebar";   
 import Navbar2 from "../components/Navbar2";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 
 const operatorMenu = [
+    { label: 'Profile', path: '/operator/profile' },
     { label: 'Home', path: '/operator/home' },
     { label: 'AddBus', path: '/operator/add-bus' },
     { label: 'Logout', path: '/operator/logout' },
 ];
 
 const OperatorDashboard = () => {
+
+
+  const navigate = useNavigate();
+  useEffect(() => {
+  const isLoggedIn = localStorage.getItem("ope-token");
+  if (!isLoggedIn) {
+    navigate("/login", { replace: true });
+  }
+}, []);
 
     const [user,setUser] = useState('');
 
