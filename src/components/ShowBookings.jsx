@@ -9,7 +9,7 @@ const ShowBookings = () => {
 
   useEffect(() => {
     const fetchReservations = async () => {
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem("ope-token");
       if (!token) {
         setLoading(false);
         return;

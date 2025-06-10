@@ -31,6 +31,8 @@ const AddBus = () => {
           },
         }
       );
+      console.log(response);
+      
       toast.success("Bus added successfully!", { position: "top-center" });
       setBus(initialBusData)
       navigate("/operator/home")

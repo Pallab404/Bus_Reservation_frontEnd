@@ -15,6 +15,7 @@ import UserProfile from './components/User/UserProfile'
 import OperatorProfile from './components/OperatorProfile'
 import UserLogout from './components/User/UserLogout'
 import OperatorLogout from './components/OperatorLogout'
+import ShowBookings from './components/ShowBookings'
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
            <Route path='profile' element={<OperatorProfile/>}/> 
            <Route path='home' element={<BusList/>}/>
            <Route path="schedules/:busId" element={<ScheduleList />} />
+           <Route path='booking/:scheduleId' element={<ShowBookings/>}/>
            <Route path='logout' element={<OperatorLogout/>}/>
         </Route>
 
